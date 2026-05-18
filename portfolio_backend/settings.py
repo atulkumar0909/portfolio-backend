@@ -3,9 +3,11 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'change-this-in-production-use-env-var')
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = False
 
-ALLOWED_HOSTS = ['portfolio-backend.railway.app']  # Restrict to your domain in production
+ALLOWED_HOSTS = [
+    "web-production-8fa5c.up.railway.app",
+] # Restrict to your domain in production
 
 INSTALLED_APPS = [
     'django.contrib.admin',
