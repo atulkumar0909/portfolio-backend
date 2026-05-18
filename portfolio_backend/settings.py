@@ -6,7 +6,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'change-this-in-production-use-
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "web-production-8fa5c.up.railway.app",
+    "*",
 ] # Restrict to your domain in production
 
 INSTALLED_APPS = [
