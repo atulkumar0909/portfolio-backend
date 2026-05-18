@@ -71,7 +71,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5500",   # Live Server (VS Code)
     "http://127.0.0.1:5500",
     "http://localhost:3000",  # React dev server
-    "https://atul-portfolio.vercel.app", 
+    "https://portfolio-bay-tau-98.vercel.app", 
     # "https://yourportfolio.com",  # Add your live domain here
 ]
 CORS_ALLOW_ALL_ORIGINS = DEBUG  # Allow all in dev, restrict in production
