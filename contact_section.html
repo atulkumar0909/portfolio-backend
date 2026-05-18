@@ -1,0 +1,307 @@
+<!-- ═══════════════════════════════════════════════════════════
+     CONTACT SECTION — Drop this into your portfolio HTML
+     API endpoint: POST http://127.0.0.1:8000/api/contact/
+═══════════════════════════════════════════════════════════ -->
+
+<section id="contact">
+  <div class="contact-container">
+    <h2 class="section-title">Let's Connect</h2>
+    <p class="section-subtitle">
+      Open to entry-level roles, internships &amp; collaborations.
+    </p>
+
+    <div class="contact-grid">
+
+      <!-- ── Left: Contact Info ───────────────────────────── -->
+      <div class="contact-info">
+        <a href="mailto:atulkumargupta7654@gmail.com" class="contact-link">
+          <span class="icon">📧</span>
+          atulkumargupta7654@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" class="contact-link">
+          <span class="icon">💼</span>
+          linkedin.com/in/YOUR_LINKEDIN
+        </a>
+        <a href="https://github.com/YOUR_GITHUB" target="_blank" class="contact-link">
+          <span class="icon">🐙</span>
+          github.com/YOUR_GITHUB
+        </a>
+      </div>
+
+      <!-- ── Right: Contact Form ──────────────────────────── -->
+      <div class="contact-form-wrapper">
+        <div id="form-alert" class="form-alert hidden"></div>
+
+        <div class="form-group">
+          <label for="contact-name">Name</label>
+          <input
+            type="text"
+            id="contact-name"
+            placeholder="Your name"
+            autocomplete="name"
+          />
+          <span class="field-error" id="error-name"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="contact-email">Email</label>
+          <input
+            type="email"
+            id="contact-email"
+            placeholder="your@email.com"
+            autocomplete="email"
+          />
+          <span class="field-error" id="error-email"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea
+            id="contact-message"
+            rows="5"
+            placeholder="Tell me about the opportunity or say hello..."
+          ></textarea>
+          <span class="field-error" id="error-message"></span>
+        </div>
+
+        <button id="contact-submit" onclick="submitContact()">
+          <span id="btn-text">Send Message 🚀</span>
+          <span id="btn-loader" class="hidden">Sending...</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     CONTACT SECTION STYLES
+═══════════════════════════════════════════════════════════ -->
+<style>
+  #contact {
+    padding: 80px 20px;
+    background: #0d1117;
+  }
+
+  .contact-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .section-subtitle {
+    color: #8b949e;
+    margin-bottom: 48px;
+    font-size: 1.05rem;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* Contact Info */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #c9d1d9;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+
+  .contact-link:hover { color: #00d9ff; }
+  .contact-link .icon { font-size: 1.2rem; }
+
+  /* Form */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    color: #8b949e;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    color: #e6edf3;
+    font-size: 0.95rem;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+    resize: vertical;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #00d9ff;
+    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.12);
+  }
+
+  .field-error {
+    color: #f85149;
+    font-size: 0.8rem;
+    min-height: 16px;
+  }
+
+  /* Alert Banner */
+  .form-alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .form-alert.success {
+    background: rgba(63, 185, 80, 0.15);
+    border: 1px solid #3fb950;
+    color: #3fb950;
+  }
+
+  .form-alert.error {
+    background: rgba(248, 81, 73, 0.12);
+    border: 1px solid #f85149;
+    color: #f85149;
+  }
+
+  .hidden { display: none !important; }
+
+  /* Submit Button */
+  #contact-submit {
+    width: 100%;
+    padding: 14px;
+    background: #00d9ff;
+    color: #0d1117;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.03em;
+  }
+
+  #contact-submit:hover { opacity: 0.88; }
+  #contact-submit:active { transform: scale(0.98); }
+  #contact-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* Responsive */
+  @media (max-width: 680px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     CONTACT FORM JAVASCRIPT
+═══════════════════════════════════════════════════════════ -->
+<script>
+  // ── Config ─────────────────────────────────────────────────
+  const API_URL = "http://127.0.0.1:8000/api/contact/";
+  // When deployed, change to: "https://yourdomain.com/api/contact/"
+
+  // ── Helpers ─────────────────────────────────────────────────
+  function showAlert(message, type) {
+    const el = document.getElementById("form-alert");
+    el.textContent = message;
+    el.className = `form-alert ${type}`;
+  }
+
+  function clearErrors() {
+    ["name", "email", "message"].forEach(field => {
+      document.getElementById(`error-${field}`).textContent = "";
+    });
+    document.getElementById("form-alert").className = "form-alert hidden";
+  }
+
+  function setLoading(isLoading) {
+    const btn = document.getElementById("contact-submit");
+    document.getElementById("btn-text").classList.toggle("hidden", isLoading);
+    document.getElementById("btn-loader").classList.toggle("hidden", !isLoading);
+    btn.disabled = isLoading;
+  }
+
+  // ── Main Submit Function ────────────────────────────────────
+  async function submitContact() {
+    clearErrors();
+
+    const name    = document.getElementById("contact-name").value.trim();
+    const email   = document.getElementById("contact-email").value.trim();
+    const message = document.getElementById("contact-message").value.trim();
+
+    // Client-side validation
+    let hasError = false;
+    if (!name || name.length < 2) {
+      document.getElementById("error-name").textContent = "Please enter your name (min 2 chars).";
+      hasError = true;
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById("error-email").textContent = "Please enter a valid email.";
+      hasError = true;
+    }
+    if (!message || message.length < 10) {
+      document.getElementById("error-message").textContent = "Message must be at least 10 characters.";
+      hasError = true;
+    }
+    if (hasError) return;
+
+    // Send to Django API
+    setLoading(true);
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        showAlert(data.message, "success");
+        // Clear the form
+        document.getElementById("contact-name").value = "";
+        document.getElementById("contact-email").value = "";
+        document.getElementById("contact-message").value = "";
+      } else {
+        // Show server-side field errors
+        if (data.errors) {
+          if (data.errors.name)    document.getElementById("error-name").textContent    = data.errors.name[0];
+          if (data.errors.email)   document.getElementById("error-email").textContent   = data.errors.email[0];
+          if (data.errors.message) document.getElementById("error-message").textContent = data.errors.message[0];
+        } else {
+          showAlert("Something went wrong. Please try again.", "error");
+        }
+      }
+    } catch (err) {
+      showAlert("Could not connect to server. Please try again later.", "error");
+      console.error("Contact form error:", err);
+    } finally {
+      setLoading(false);
+    }
+  }
+</script>
